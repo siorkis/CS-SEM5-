@@ -63,3 +63,40 @@ DB    : {'batman': 'f27bee3fdd8fc42537ba8dc59f3e56ce1a861502475f75d29ec6642e9521
 Input : log:star pass:sun11
 DB    : {'star': 'e8faaf31984e37a8eb1c1b5a4610b1ddc369701f0457ace3eca974369d53acea'}
 ```
+
+## THE DIGITAL SIGNATURE ALGORITHM
+
+First we need to take our message 
+```python 
+message = "Trust no one"
+```
+
+and performe hashing, 
+
+```python 
+encryption_text = sha256(message.encode('utf-8')).hexdigest() -> ee3c2b3c57d09a051780733e9b6b05f0d47bcd9ddf038c8c7d67eddc7116467f
+```
+then we need to convert our hash to the number by inbuild function hash()
+
+```python 
+number_hash = hash(encryption_text)
+ee3c2b3c57d09a051780733e9b6b05f0d47bcd9ddf038c8c7d67eddc7116467f -> 997524770
+```
+
+Then we can use RSA algorithm from previous lab work. In theory, we take our "number_hash" and "sign" it by using decryption func from RSA algoritm. We need to generate pair of public/private keys, for example with rsa lib:
+ 
+```python 
+(bob_pub, bob_priv) = rsa.newkeys(512)
+```
+
+Then we use sicret key to sign the message. User can check the message by decription using public key. 
+
+```python
+message = "Trust no one"
+ee3c2b3c57d09a051780733e9b6b05f0d47bcd9ddf038c8c7d67eddc7116467f hash
+997524770 number from hash
+Message data =  997524770
+17 It is your public key
+1.4705882352941178 It is your secret key
+15.869140625 digital signature
+```
