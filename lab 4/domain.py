@@ -7,7 +7,6 @@ while command != 'exit':
         username = input("Enter new username : ")
         password = input('Enter new password: ')
         encryption_text = sha256(password.encode('utf-8')).hexdigest()
-        # print(encryption_text)
         table[username] = encryption_text
     elif command == "login":
         username = input("Enter username : ")
