@@ -1,0 +1,120 @@
+#+TITLE: CRYPTOGRAPHY AND SECURITY LABORATORY WORK 3
+#+AUTHOR: FCIM FAF-203 Covtun Serghei
+
+
+** TOPIC: ASYMMETRIC CIPHERS
+
+=Asymmetric Cryptography= (a.k.a. Public-Key Cryptography)deals with the encryption of plain text when having 2 keys, one being public and the other one private. The keys form a pair and despite being different they are related.
+
+As the name implies, the public key is available to the public but the private one is available only to the authenticated recipients.
+
+A popular use case of the asymmetric encryption is in SSL/TLS certificates along side symmetric encryption mechanisms. It is necessary to use both types of encryption because asymmetric ciphers are computationally expensive, so these are usually used for the communication initiation and key exchange, or sometimes called handshake. The messages after that are encrypted with symmetric ciphers.
+
+** OBJECTIVES
+
+- Get familiar with the asymmetric cryptography mechanisms.
+- Implement an example of an asymmetric cipher.
+- As in the previous task, please use a client class or test classes to showcase the execution of your programs.
+
+** THE RSA ALGORITHM
+
+Introduced at the time when the era of electronic email was expected to soon arise, RSA implemented two important ideas:
+
+1. =Public-key encryption=. This idea omits the need for a “courier” to deliver keys to recipients over another secure channel before transmitting the originally-intended message. In RSA, encryption keys are public, while the decryption keys are not, so only the person with the correct decryption key can decipher an encrypted message. Everyone has their own encryption and decryption keys. The keys must be made in such a way that the decryption key may not be easily deduced from the public encryption key.
+
+2. =Digital signatures=. The receiver may need to verify that a transmitted message actually originated from the sender (signature), and didn’t just come from there (authentication). This is done using the sender’s decryption key, and the signature can later be verified by anyone, using the corresponding public encryption key. Signatures therefore cannot be forged. Also, no signer can later deny having signed the message.
+
+** IMPLEMENTATION
+
+*** GENERATING PUBLIC KEY
+
+1. Select two prime no's.
+
+#+begin_src python
+p = random.choice(list_primes)
+q = random.choice(list_primes)
+#+end_src
+
+To achieve that, I am going to use the predefined array of prime numbers and randomly choose two different.
+
+Now compute the First part of the Public key:
+
+#+begin_src python
+n = q * p
+RSA.eiler_value = (p - 1)*(q - 1)
+#+end_src
+
+2. We also need a small exponent say =e=:
+
+#+begin_src python
+def coprime(self, eiler_val):
+    RSA.public_exp = 17
+    while self.gcd(eiler_val, RSA.public_exp) != 1:
+        RSA.public_exp += 1
+    print(RSA.public_exp, "It's your public key")
+#+end_src
+
+The public key has been made of n and e:
+
+#+begin_src python
+public_key = (n, e)
+#+end_src
+
+*** GENERATING PRIVATE KEY
+
+1. We need to calculate $\phi$(n):
+
+2. Now calculate Private Key, =d=:
+
+#+begin_src python
+d = cs.find_mod_inverse(e, (p - 1) * (q - 1))
+#+end_src
+
+The private key has been made of n and d:
+
+#+begin_src python
+private_key = self.secret_e(RSA.public_exp, RSA.eiler_value)
+#+end_src
+
+*** ENCRYPTION
+
+The Cipher Text is equal to =Pe mod n=, where P is the plaintext.
+
+#+begin_src python
+def encryption(self, msg):
+    msg = int(msg)
+    self.public_first(RSA.primes)
+    self.coprime(RSA.eiler_value)
+
+    self.secret_e(RSA.public_exp, RSA.eiler_value)
+
+    message = pow(msg, RSA.public_exp)
+    message = math.fmod(message, RSA.modulo)
+
+    return message
+#+end_src
+
+*** DECRYPTION
+
+=De mod n= where D will refund the plaintext.
+
+#+begin_src python
+def decryption(encrypted):
+    private_key = float(input("Enter your secret key\n"))
+
+    if private_key != RSA.secret_exp:
+        return "Wrong private key"
+
+    message = pow(encrypted, private_key)
+    message = math.fmod(message, RSA.modulo)
+    return message
+#+end_src
+
+** CONCLUSION/RESULTS
+
+1. Input:
+    Plain text = 12345
+2. Output:
+    - Public Key: =17=
+    - Private Key: =36.294117647058826=
+    - Encrypted Text: =655.0=
