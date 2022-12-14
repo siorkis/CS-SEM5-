@@ -158,17 +158,17 @@ msg: plain-text/encrypted-text
 If user login with pre-defined login: "admin" and password: "hello123", then system grants role "admin" to that user. With role "admin" you could perform CRUD operations.
 
 For that purpose exist route ../users/ and specified commands: 
-- read
+1. __read__
 return password of the user by sending JSON request:
 
 ```
 { "login" : "batman" }
 ```
-1. readAll
+2. __readAll__
 
 User can provide nothing in request and get response with all content of DB in JSON format 
 
-2. create
+3. __create__
 
 Creates new user with indicated login and password
 
@@ -178,7 +178,7 @@ Creates new user with indicated login and password
     "password" : "123456"
 }
 ```
-3. update 
+4. __update__ 
 
 Updates the password of indicated user
 
@@ -188,7 +188,7 @@ Updates the password of indicated user
     "password" : "new123"
 }
 ```
-4. delete 
+5. __delete__ 
 
 Delete user with indicated login
 
