@@ -159,7 +159,8 @@ If user login with pre-defined login: "admin" and password: "hello123", then sys
 
 For that purpose exist route ../users/ and specified commands: 
 1. __read__
-return password of the user by sending JSON request:
+
+Return password of the user by sending JSON request:
 
 ```
 { "login" : "batman" }
@@ -197,7 +198,7 @@ Delete user with indicated login
     "login" : "batman"
 }
 ```
-Ex: ../users/create
+Ex: __../users/create__
 ```
 {
     "login" : "batman",
