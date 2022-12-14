@@ -164,25 +164,32 @@ return password of the user by sending JSON request:
 ```
 { "login" : "batman" }
 ```
-- readAll
+1. readAll
+
 User can provide nothing in request and get response with all content of DB in JSON format 
-- create
+
+2. create
+
 Creates new user with indicated login and password
+
 ```
 {
     "login" : "batman",
     "password" : "123456"
 }
 ```
-- update 
+3. update 
+
 Updates the password of indicated user
+
 ```
 {
     "login" : "batman",
     "password" : "new123"
 }
 ```
-- delete 
+4. delete 
+
 Delete user with indicated login
 
 ```
