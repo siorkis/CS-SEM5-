@@ -1,19 +1,19 @@
-#+TITLE: CRYPTOGRAPHY AND SECURITY LABORATORY WORK 5
-#+AUTHOR: FCIM FAF-203 Covtun Serghei
+## CRYPTOGRAPHY AND SECURITY LABORATORY WORK 5
+## FCIM FAF-203 Covtun Serghei
 
 
-** TOPIC:  Web Authentication & Authorisation
+## TOPIC:  Web Authentication & Authorisation
 
  Authentication & authorization are 2 of the main security goals of IT systems and should not be used interchangibly. Simply put, during authentication the system verifies the identity of a user or service, and during authorization the system checks the access rights, optionally based on a given user role.
 
-** OBJECTIVES
+## OBJECTIVES
 
 1. Take what you have at the moment from previous laboratory works and put it in a web service / serveral web services.
 2. Your services should have implemented basic authentication and MFA (the authentication factors of your choice).
 3. Your web app needs to simulate user authorization and the way you authorise user is also a choice that needs to be done by you.
 4. As services that your application could provide, you could use the classical ciphers. Basically the user would like to get access and use the classical ciphers, but they need to authenticate and be authorized. 
 
-** IMPLEMENTATION
+## IMPLEMENTATION
 
 For a client side we will use Postman 
 
@@ -25,7 +25,7 @@ Web server (with flask framework) have 4 different routs for that purpose.
 3. Confirm
 4. Logout
 
-** Register
+## Register
 
 ```python 
 @app.route('/register', methods=['GET'])
@@ -48,7 +48,7 @@ User provide a request with specific JSON format and then new user added to the 
 { "login" : "password" }
 ```
 
-** Login 
+## Login 
 
 ```python 
 @app.route('/login', methods=['GET'])
@@ -79,7 +79,7 @@ User provide a request with specific JSON format and then system check if such u
 { "login" : "password" }
 ```
 
-** Confirm 
+## Confirm 
 
 ```python 
 @app.route('/confirm', methods=['GET'])
@@ -104,7 +104,7 @@ User provide a request with specific JSON format and then system check if OTP co
 { "code" : "123456" }
 ```
 
-** Logout 
+## Logout 
 
 ```python 
 @app.route('/logout', methods=['GET'])
@@ -118,7 +118,7 @@ def logout():
 
 Finally each user could logout from the system and it grants him role "guest". 
 
-** Roles 
+## Roles 
 
 In that system exist 3 roles which defines access to a different tools. 
 - guest 
@@ -128,7 +128,7 @@ Users are not privileged ones, they could only encrypt/decrypt messages by using
 - admin 
 Admin is the user with full access to the system, which includes managing local DB of all users and performing CRUD (create, read, delete, update) operations on it.
 
-** Ciphers 
+## Ciphers 
 
 In this lab work was implemented ciphers which encrypt only text messages and 1 additional cypher for numbers (RSA)
 
@@ -153,7 +153,7 @@ msg: plain-text/encrypted-text
 }
 ```
 
-** Local DB 
+## Local DB 
 
 If user login with pre-defined login: "admin" and password: "hello123", then system grants role "admin" to that user. With role "admin" you could perform CRUD operations.
 
